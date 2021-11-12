@@ -15,13 +15,13 @@ feature 'Displaying cookies' do
     new_cookie = FactoryGirl.create(:cookie, fillings: nil, storage: @user)
     
     visit root_path
-    expect(page).to have_content "no fillings"
+    expect(page).to have_content "no filling"
   end
 
   scenario 'When cookies have empty fillings' do
     new_cookie = FactoryGirl.create(:cookie, fillings: "", storage: @user)
     
     visit root_path
-    expect(page).to have_content "no fillings"
+    expect(page).to have_content "no filling"
   end
 end
