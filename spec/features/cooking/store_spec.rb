@@ -5,22 +5,25 @@ feature 'Displaying cookies' do
   end
 
   scenario 'When cookies have fillings' do
-    new_cookie = FactoryGirl.create(:cookie, fillings: "chocolate", storage: @user)
-
+    CookiesHelper.create_cookie_with("chocolate", @user)
     visit root_path
     expect(page).to have_content "chocolate"
   end
 
   scenario 'When cookies have nil fillings' do
-    new_cookie = FactoryGirl.create(:cookie, fillings: nil, storage: @user)
-    
+    CookiesHelper.create_cookie_with(nil, @user)
     visit root_path
     expect(page).to have_content "no filling"
   end
 
   scenario 'When cookies have empty fillings' do
-    new_cookie = FactoryGirl.create(:cookie, fillings: "", storage: @user)
-    
+    CookiesHelper.create_cookie_with("", @user)
+    visit root_path
+    expect(page).to have_content "no filling"
+  end
+
+  scenario 'When cookies have whitespace fillings' do 
+    CookiesHelper.create_cookie_with("  ", @user)
     visit root_path
     expect(page).to have_content "no filling"
   end
