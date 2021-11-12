@@ -12,5 +12,5 @@
       %li
         = pluralize(cookies.count, "Cookie")
         with
-        = fillings.to_s.strip.empty? ? "no filling" : fillings
+        = display_filling(fillings)
     
