@@ -1,5 +1,5 @@
 module CookiesHelper
-    def self.create_cookie_with(filling, storage)
-        FactoryGirl.create(:cookie, fillings: filling, storage: storage)
+    def display_filling(input_string)
+        input_string.to_s.strip.empty? ? "no filling" : input_string
     end
 end
