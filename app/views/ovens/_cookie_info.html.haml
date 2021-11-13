@@ -4,6 +4,6 @@
     1 cookie with #{local_assigns[:oven].cookie.fillings || "no fillings"}
     - if local_assigns[:oven].cookie.ready?
       (Your Cookie is Ready)
-      = button_to "Retrieve Cookie", empty_oven_path, class: 'button tiny'
+      = button_to "Retrieve Cookie", empty_oven_path(local_assigns[:oven]), class: 'button tiny'
   - else
     None
