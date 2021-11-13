@@ -1,5 +1,6 @@
 %h3= @oven.name
 
+%div{id: "oven_id", :data => {:id => @oven.id}}
 = render :partial => "cookie_info", :locals => { oven: @oven }
 %br
 

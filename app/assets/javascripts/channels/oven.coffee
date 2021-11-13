@@ -12,7 +12,8 @@ actions = {
 }
 $(document).on('turbolinks:load', () ->
   if $('body').hasClass('oven') && !App.oven
-    App.oven = App.cable.subscriptions.create({ channel: "OvenChannel", oven_id: 1}, actions)
+    this_id = $("#oven_id").data().id
+    App.oven = App.cable.subscriptions.create({ channel: "OvenChannel", oven_id: this_id}, actions)
   else
     if App.oven
       App.oven.unsubscribe()
