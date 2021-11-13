@@ -48,6 +48,9 @@ gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 
+# To cook cookies in the background
+gem 'sidekiq'
+
 group :development do
   gem 'selenium-webdriver'
   gem 'listen', '>= 3.0.5', '< 3.2'

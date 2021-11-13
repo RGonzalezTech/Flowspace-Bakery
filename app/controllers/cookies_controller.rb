@@ -13,6 +13,9 @@ class CookiesController < ApplicationController
   def create
     @oven = current_user.ovens.find_by!(id: params[:oven_id])
     @cookie = @oven.create_cookie!(cookie_params)
+
+    BakerWorker.perform_in(2.minutes, @oven.id)
+
     redirect_to oven_path(@oven)
   end
 
