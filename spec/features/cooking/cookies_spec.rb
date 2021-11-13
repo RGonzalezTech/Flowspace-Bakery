@@ -51,13 +51,23 @@ feature 'Cooking cookies' do
     user = create_and_signin
     oven = user.ovens.first
 
-    oven = FactoryGirl.create(:oven, user: user)
     visit oven_path(oven)
 
     3.times do
       click_link_or_button 'Prepare Cookie'
       fill_in 'Fillings', with: 'Chocolate Chip'
       click_button 'Mix and bake'
+
+      expect(page).to_not have_content "Your Cookie is Ready"
+
+      # update oven with latest DB changes
+      oven.reload
+      # quickly set cookie state to ready, no waiting for BG worker
+      oven.cookie.set_ready(true)
+      # re-render the page
+      visit oven_path(oven)
+
+      expect(page).to have_content "Your Cookie is Ready"
 
       click_button 'Retrieve Cookie'
     end
