@@ -7,7 +7,7 @@ actions = {
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    console.log("Received: ", data)
+    $(".cookie-info").html(data.view)
     # Called when there's incoming data on the websocket for this channel
 }
 $(document).on('turbolinks:load', () ->
